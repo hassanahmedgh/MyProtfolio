@@ -548,9 +548,17 @@ a {
 .work-shot img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: top center;
+  object-fit: contain;
+  object-position: center;
   display: block;
+}
+
+/* When a real cover image is present: clean solid backdrop, no stripe pattern,
+   and the full screenshot is shown (contain) so nothing gets cropped. */
+.work-shot--img {
+  background-image: none;
+  background: rgba(var(--fg), 0.05);
+  padding: 10px;
 }
 
 .work-shot .shot-label {

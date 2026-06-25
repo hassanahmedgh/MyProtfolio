@@ -38,7 +38,7 @@ export default function WorkList({ projects }: { projects: Project[] }) {
                 <h3 className="work-title">{p.title}</h3>
                 <span className="work-tags">{p.tags.join(" · ")}</span>
               </div>
-              <div className="work-shot">
+              <div className={`work-shot${p.coverImage ? " work-shot--img" : ""}`}>
                 {p.coverImage ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img src={p.coverImage} alt={p.title} loading="lazy" />
