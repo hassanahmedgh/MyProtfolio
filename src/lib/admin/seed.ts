@@ -49,8 +49,7 @@ export async function seedSampleProjects(): Promise<{
         url: p.url,
         tags: p.tags,
         order: p.order,
-        // Apply the seed cover only if none is set yet (don't clobber a custom one).
-        ...(existing.coverImage ? {} : { coverImage: p.coverImage }),
+        coverImage: p.coverImage,
         updatedAt: serverTimestamp(),
       });
       updated++;
