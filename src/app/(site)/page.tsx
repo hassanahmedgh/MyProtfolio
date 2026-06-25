@@ -81,7 +81,7 @@ export default async function HomePage() {
           <About />
           <WorkList projects={projects} />
           <ExperiencePath />
-          <WritingList posts={posts} />
+          <WritingList posts={posts.slice(0, 3)} hasMore={posts.length > 0} />
           <Contact />
           <Footer />
         </div>

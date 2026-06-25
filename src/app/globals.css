@@ -669,6 +669,25 @@ a {
   text-align: right;
 }
 
+.see-all {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(var(--fg), 0.75);
+  border: 1px solid rgba(var(--fg), 0.25);
+  border-radius: 999px;
+  padding: 12px 24px;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.see-all:hover {
+  background: rgba(var(--fg), 0.08);
+  color: rgb(var(--fg));
+  border-color: rgba(var(--fg), 0.5);
+}
+
 .empty-note {
   font-family: var(--font-mono);
   font-size: 13px;

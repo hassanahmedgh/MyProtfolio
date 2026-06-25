@@ -3,7 +3,13 @@ import type { Post } from "@/lib/types";
 import Reveal from "@/components/chrome/Reveal";
 import { formatMonthYear } from "@/lib/format";
 
-export default function WritingList({ posts }: { posts: Post[] }) {
+export default function WritingList({
+  posts,
+  hasMore = false,
+}: {
+  posts: Post[];
+  hasMore?: boolean;
+}) {
   return (
     <section id="writing" className="section">
       <div className="sec-head">
@@ -33,6 +39,14 @@ export default function WritingList({ posts }: { posts: Post[] }) {
           </Reveal>
         ))}
       </div>
+
+      {hasMore && (
+        <div style={{ marginTop: 40 }}>
+          <Link href="/blog" data-hover="1" className="see-all">
+            See all writing →
+          </Link>
+        </div>
+      )}
     </section>
   );
 }
