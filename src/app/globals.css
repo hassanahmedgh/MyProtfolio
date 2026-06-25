@@ -536,7 +536,8 @@ a {
   border: 1px solid rgba(var(--fg), 0.12);
   display: flex;
   align-items: flex-end;
-  padding: 14px;
+  /* striped placeholder only shows in the empty state (behind the label);
+     a real cover image fills the whole card edge-to-edge */
   background-image: repeating-linear-gradient(
     45deg,
     rgba(var(--fg), 0.05) 0 10px,
@@ -548,6 +549,7 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top center;
   display: block;
 }
 
@@ -557,6 +559,7 @@ a {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: rgba(var(--fg), 0.4);
+  padding: 14px;
 }
 
 /* ============================================================
