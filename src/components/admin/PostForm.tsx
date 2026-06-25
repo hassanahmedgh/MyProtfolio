@@ -21,6 +21,10 @@ export default function PostForm({ initial }: { initial?: Post | null }) {
   const [body, setBody] = useState(initial?.body ?? "");
   const [status, setStatus] = useState<Status>(initial?.status ?? "draft");
   const [order, setOrder] = useState(String(initial?.order ?? 0));
+  const [seoTitle, setSeoTitle] = useState(initial?.seoTitle ?? "");
+  const [metaDescription, setMetaDescription] = useState(initial?.metaDescription ?? "");
+  const [canonicalUrl, setCanonicalUrl] = useState(initial?.canonicalUrl ?? "");
+  const [noindex, setNoindex] = useState(initial?.noindex ?? false);
   const [saving, setSaving] = useState(false);
   const [err, setErr] = useState("");
 
@@ -50,6 +54,10 @@ export default function PostForm({ initial }: { initial?: Post | null }) {
         category: category.trim() || "Journal",
         status,
         order: Number(order) || 0,
+        seoTitle: seoTitle.trim(),
+        metaDescription: metaDescription.trim(),
+        canonicalUrl: canonicalUrl.trim(),
+        noindex,
       };
 
       if (editing && initial) await updatePost(initial.id, input);
@@ -148,6 +156,72 @@ export default function PostForm({ initial }: { initial?: Post | null }) {
           />
         </div>
       </div>
+
+      <h2 style={{ fontSize: 22, margin: "32px 0 6px" }}>SEO</h2>
+      <p className="admin-sub" style={{ marginBottom: 18 }}>
+        All optional. Leave blank to use smart defaults.
+      </p>
+
+      <div className="field">
+        <label>Meta title</label>
+        <input
+          className="input"
+          value={seoTitle}
+          onChange={(e) => setSeoTitle(e.target.value)}
+          placeholder="Defaults to the post title"
+        />
+        <span className="hint">
+          The clickable headline in Google / browser tab. ~60 characters.
+        </span>
+      </div>
+
+      <div className="field">
+        <label>Meta description</label>
+        <textarea
+          className="textarea"
+          style={{ minHeight: 90, fontFamily: "var(--font-hand)", fontSize: 18 }}
+          value={metaDescription}
+          onChange={(e) => setMetaDescription(e.target.value)}
+          placeholder="Defaults to the excerpt"
+        />
+        <span className="hint">
+          The grey summary text under the title in search results. ~155 characters.
+        </span>
+      </div>
+
+      <div className="field">
+        <label>Canonical URL</label>
+        <input
+          className="input"
+          type="text"
+          value={canonicalUrl}
+          onChange={(e) => setCanonicalUrl(e.target.value)}
+          placeholder="Defaults to this post's own URL"
+        />
+        <span className="hint">
+          Only set this if this content also lives at another URL (points search
+          engines to the original).
+        </span>
+      </div>
+
+      <div className="field">
+        <label>Search visibility</label>
+        <label style={{ display: "flex", gap: 10, alignItems: "center", marginTop: 6 }}>
+          <input
+            type="checkbox"
+            checked={noindex}
+            onChange={(e) => setNoindex(e.target.checked)}
+          />
+          <span className="hint">
+            Hide this post from search engines (noindex). Keep OFF for normal posts.
+          </span>
+        </label>
+      </div>
+
+      <p className="hint" style={{ marginBottom: 18 }}>
+        Tags above are used as keywords, and the cover image is the social-share
+        (Open Graph) image.
+      </p>
 
       {err && <p className="error-text">{err}</p>}
 

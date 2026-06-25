@@ -30,16 +30,21 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const post = await getPostBySlug(slug);
   if (!post) return { title: "Post not found" };
 
+  // Per-post SEO overrides, each falling back to a sensible default.
+  const metaTitle = post.seoTitle?.trim() || post.title;
+  const metaDescription = post.metaDescription?.trim() || post.excerpt;
+  const canonical = post.canonicalUrl?.trim() || `/blog/${post.slug}`;
   // Use the post cover when set; otherwise inherit the generated OG image.
   const images = post.coverImage ? [post.coverImage] : undefined;
   return {
-    title: post.title,
-    description: post.excerpt,
-    alternates: { canonical: `/blog/${post.slug}` },
+    title: metaTitle,
+    description: metaDescription,
+    alternates: { canonical },
+    robots: post.noindex ? { index: false, follow: false } : undefined,
     openGraph: {
       type: "article",
-      title: post.title,
-      description: post.excerpt,
+      title: metaTitle,
+      description: metaDescription,
       url: absoluteUrl(`/blog/${post.slug}`),
       publishedTime: post.publishedAt ?? undefined,
       modifiedTime: post.updatedAt ?? undefined,
@@ -48,8 +53,8 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title,
-      description: post.excerpt,
+      title: metaTitle,
+      description: metaDescription,
       ...(images ? { images } : {}),
     },
   };
@@ -69,7 +74,7 @@ export default async function ArticlePage({ params }: Params) {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
-    description: post.excerpt,
+    description: post.metaDescription?.trim() || post.excerpt,
     datePublished: post.publishedAt ?? undefined,
     dateModified: post.updatedAt ?? post.publishedAt ?? undefined,
     author: { "@type": "Person", name: cv.name, url: getSiteUrl() },

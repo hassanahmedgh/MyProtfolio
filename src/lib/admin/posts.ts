@@ -34,6 +34,10 @@ function map(id: string, d: DocumentData): Post {
     readingMinutes: typeof d.readingMinutes === "number" ? d.readingMinutes : 1,
     status: d.status === "published" ? "published" : "draft",
     order: typeof d.order === "number" ? d.order : 0,
+    seoTitle: d.seoTitle ?? "",
+    metaDescription: d.metaDescription ?? "",
+    canonicalUrl: d.canonicalUrl ?? "",
+    noindex: Boolean(d.noindex),
     publishedAt:
       d.publishedAt instanceof Timestamp
         ? d.publishedAt.toDate().toISOString()

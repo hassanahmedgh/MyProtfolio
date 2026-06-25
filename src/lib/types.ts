@@ -29,6 +29,11 @@ export interface Post {
   readingMinutes: number;
   status: Status;
   order: number;
+  /** SEO overrides (all optional — blank falls back to sensible defaults). */
+  seoTitle: string;
+  metaDescription: string;
+  canonicalUrl: string;
+  noindex: boolean;
   publishedAt: string | null;
   createdAt: string | null;
   updatedAt: string | null;
