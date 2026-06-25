@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Caveat:wght@400;500;600;700&family=Patrick+Hand&family=Permanent+Marker&family=Shadows+Into+Light+Two&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; cursor: none; }
+  html, body { margin: 0; padding: 0; background: #080808; scroll-behavior: smooth; }
+  ::selection { background: #f5f5f0; color: #080808; }
+  @media (max-width: 640px){ * { cursor: auto; } }
+  @keyframes pulseDot { 0%,100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245,245,240,.35);} 50% { transform: scale(1.12); box-shadow: 0 0 0 18px rgba(245,245,240,0);} }
+  @keyframes waterdrop {
+    0%   { transform: translate(-50%,-50%) translateY(34vh) scale(0.16); border-radius: 50% 50% 50% 50%; }
+    40%  { transform: translate(-50%,-50%) translateY(0) scale(0.16); border-radius: 46% 54% 50% 50%; }
+    55%  { transform: translate(-50%,-50%) translateY(0) scale(0.30); border-radius: 54% 46% 52% 48%; }
+    100% { transform: translate(-50%,-50%) translateY(0) scale(18); border-radius: 50%; }
+  }
+  @keyframes floaty { 0%,100% { transform: translateY(0);} 50% { transform: translateY(8px);} }
+  @keyframes fadeUp { from { opacity:0; transform: translateY(26px);} to { opacity:1; transform: none;} }
+</style>
+</helmet>
+<div ref="{{ setRoot }}" style="background:radial-gradient(1100px 720px at 50% -6%, rgba(245,245,240,.12), transparent 60%), radial-gradient(900px 640px at 50% 118%, rgba(245,245,240,.07), transparent 60%), #080808; color:#f5f5f0; font-family:'Patrick Hand',cursive; min-height:100vh; position:relative; overflow-x:hidden;">
+
+  <!-- custom cursor -->
+  <div ref="{{ setDot }}" style="position:fixed; top:0; left:0; width:14px; height:14px; border-radius:50%; background:#f5f5f0; mix-blend-mode:difference; pointer-events:none; z-index:99999; will-change:transform;"></div>
+
+  <!-- INTRO SCREEN -->
+  <sc-if value="{{ isIntro }}" hint-placeholder-val="{{ true }}">
+    <div style="position:fixed; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:space-between; padding:48px 32px 56px; z-index:50;">
+      <div style="width:100%; display:flex; justify-content:space-between; align-items:center; font-family:'Space Mono',monospace; font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:rgba(245,245,240,.5);">
+        <span>Portfolio — '26</span>
+        <span>Frontend / Full-Stack</span>
+      </div>
+
+      <div style="text-align:center; transform:translateY(-12px);">
+        <div style="font-family:'Space Mono',monospace; font-size:13px; letter-spacing:.3em; text-transform:uppercase; color:rgba(245,245,240,.45); margin-bottom:18px;">welcome</div>
+        <h1 style="font-size:clamp(64px,13vw,180px); line-height:.9; margin:0; font-weight:600; text-shadow:0 0 50px rgba(245,245,240,.4), 0 0 14px rgba(245,245,240,.25);">get to<br>know me</h1>
+        <p style="font-family:'Space Mono',monospace; font-size:13px; letter-spacing:.08em; color:rgba(245,245,240,.5); max-width:420px; margin:26px auto 0; line-height:1.7;">a web developer who likes building things that move. step inside.</p>
+      </div>
+
+      <button onClick="{{ enter }}" data-hover="1" style="background:none; border:none; padding:0; display:flex; flex-direction:column; align-items:center; gap:16px; font-family:inherit;">
+        <span style="display:block; width:22px; height:22px; border-radius:50%; background:#f5f5f0; animation:pulseDot 2.4s ease-in-out infinite;"></span>
+        <span style="font-family:'Space Mono',monospace; font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:rgba(245,245,240,.7); animation:floaty 2.4s ease-in-out infinite;">click here</span>
+      </button>
+    </div>
+  </sc-if>
+
+  <!-- WATER DROP OVERLAY -->
+  <sc-if value="{{ showOverlay }}" hint-placeholder-val="{{ false }}">
+    <div ref="{{ setOverlay }}" style="position:fixed; left:50%; top:50%; width:120px; height:120px; background:#f5f5f0; z-index:9000; pointer-events:none; animation:waterdrop 1.15s cubic-bezier(.7,0,.3,1) forwards; will-change:transform; transition:opacity .8s ease;"></div>
+  </sc-if>
+
+  <!-- PORTFOLIO -->
+  <sc-if value="{{ isPortfolio }}" hint-placeholder-val="{{ false }}">
+    <div>
+      <!-- NAV -->
+      <nav style="position:fixed; top:0; left:0; right:0; z-index:8000; display:flex; justify-content:space-between; align-items:center; padding:22px 40px; mix-blend-mode:difference;">
+        <a href="#top" data-hover="1" style="display:flex; align-items:center; gap:8px; color:#f5f5f0; text-decoration:none;">
+          <span style="font-size:30px; font-weight:700; letter-spacing:-.01em; text-shadow:0 0 20px rgba(245,245,240,.4);">ha</span>
+          <span style="width:8px; height:8px; border-radius:50%; background:#f5f5f0; display:inline-block; box-shadow:0 0 12px rgba(245,245,240,.6);"></span>
+        </a>
+        <div style="display:flex; gap:30px; font-family:'Space Mono',monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase;">
+          <a href="#work" data-hover="1" style="color:#f5f5f0; text-decoration:none;">Work</a>
+          <a href="#about" data-hover="1" style="color:#f5f5f0; text-decoration:none;">About</a>
+          <a href="#experience" data-hover="1" style="color:#f5f5f0; text-decoration:none;">Path</a>
+          <a href="#writing" data-hover="1" style="color:#f5f5f0; text-decoration:none;">Writing</a>
+          <a href="#contact" data-hover="1" style="color:#f5f5f0; text-decoration:none;">Contact</a>
+        </div>
+      </nav>
+
+      <!-- HERO -->
+      <header id="top" style="min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding:120px 40px 80px; max-width:1280px; margin:0 auto;">
+        <div style="font-family:'Space Mono',monospace; font-size:13px; letter-spacing:.3em; text-transform:uppercase; color:rgba(245,245,240,.5); margin-bottom:24px;">— hi, i'm</div>
+        <h1 style="font-size:clamp(72px,15vw,240px); line-height:.82; margin:0; font-weight:700; text-shadow:0 0 60px rgba(245,245,240,.35), 0 0 16px rgba(245,245,240,.2);">Hassan<br>Ahmed</h1>
+        <div style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:40px; margin-top:36px;">
+          <p style="font-size:clamp(28px,3.4vw,46px); line-height:1.25; margin:0; max-width:680px; color:rgba(245,245,240,.92);">I design &amp; build fast, playful web experiences — turning rough ideas into interfaces that feel alive.</p>
+          <a href="#about" data-hover="1" style="font-family:'Space Mono',monospace; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:rgba(245,245,240,.6); text-decoration:none; display:flex; flex-direction:column; align-items:center; gap:10px; animation:floaty 2.6s ease-in-out infinite;">scroll<span style="font-size:18px;">↓</span></a>
+        </div>
+      </header>
+
+      <!-- ABOUT / GET TO KNOW ME -->
+      <section id="about" style="padding:120px 40px; max-width:1280px; margin:0 auto;">
+        <div style="font-family:'Space Mono',monospace; font-size:12px; letter-spacing:.3em; text-transform:uppercase; color:rgba(245,245,240,.45); margin-bottom:50px; display:flex; align-items:center; gap:18px;"><span style="width:8px;height:8px;border-radius:50%;background:#f5f5f0;display:inline-block;"></span>so, about me</div>
+        <div style="display:grid; grid-template-columns:1.4fr 1fr; gap:80px; align-items:start;">
+          <div ref="{{ reveal }}">
+            <p style="font-size:clamp(30px,3.6vw,52px); line-height:1.3; margin:0 0 32px; font-weight:500;">I'm a web developer based wherever the wifi is good. I spend my days turning Figma files and half-formed ideas into living, breathing interfaces.</p>
+            <p style="font-size:clamp(22px,2.4vw,30px); line-height:1.5; margin:0; color:rgba(245,245,240,.7);">My favorite kind of work sits right where clean engineering meets a little bit of magic — micro-interactions, smooth transitions, the small details people feel but never quite notice.</p>
+          </div>
+          <div ref="{{ reveal }}" style="font-family:'Space Mono',monospace; font-size:13px; line-height:1.9; color:rgba(245,245,240,.6); border-left:1px solid rgba(245,245,240,.15); padding-left:28px;">
+            <div style="color:#f5f5f0; letter-spacing:.16em; text-transform:uppercase; margin-bottom:18px;">currently</div>
+            <p style="margin:0 0 26px;">Building front-ends, breaking them, and building them better.</p>
+            <div style="color:#f5f5f0; letter-spacing:.16em; text-transform:uppercase; margin-bottom:18px;">toolbox</div>
+            <p style="margin:0;">React · TypeScript · Three.js · Node · GSAP · Figma · whatever the project needs</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- WORK / PROJECTS -->
+      <section id="work" style="padding:120px 40px; max-width:1280px; margin:0 auto;">
+        <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:64px; flex-wrap:wrap; gap:20px;">
+          <h2 style="font-size:clamp(48px,8vw,120px); line-height:.85; margin:0; font-weight:700; text-shadow:0 0 44px rgba(245,245,240,.28);">Selected<br>Work</h2>
+          <span style="font-family:'Space Mono',monospace; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:rgba(245,245,240,.45);">04 projects</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:24px;">
+          <sc-for list="{{ projects }}" as="p" hint-placeholder-count="4">
+            <a ref="{{ reveal }}" href="#contact" data-hover="1" style="text-decoration:none; color:inherit; display:grid; grid-template-columns:80px 1fr 1.1fr; gap:36px; align-items:center; padding:34px 0; border-top:1px solid rgba(245,245,240,.14);" style-hover="background:rgba(245,245,240,.03);">
+              <span style="font-family:'Space Mono',monospace; font-size:13px; color:rgba(245,245,240,.45);">{{ p.no }}</span>
+              <div>
+                <h3 style="font-size:clamp(34px,4.4vw,64px); line-height:1; margin:0 0 12px; font-weight:600;">{{ p.title }}</h3>
+                <span style="font-family:'Space Mono',monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:rgba(245,245,240,.5);">{{ p.tags }}</span>
+              </div>
+              <div style="aspect-ratio:16/10; border-radius:4px; overflow:hidden; background-image:repeating-linear-gradient(45deg,rgba(245,245,240,.05) 0 10px,transparent 10px 20px); border:1px solid rgba(245,245,240,.12); display:flex; align-items:flex-end; padding:14px;">
+                <span style="font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(245,245,240,.4);">project shot →</span>
+              </div>
+            </a>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE / PATH -->
+      <section id="experience" style="padding:120px 40px; max-width:1280px; margin:0 auto;">
+        <div style="font-family:'Space Mono',monospace; font-size:12px; letter-spacing:.3em; text-transform:uppercase; color:rgba(245,245,240,.45); margin-bottom:56px; display:flex; align-items:center; gap:18px;"><span style="width:8px;height:8px;border-radius:50%;background:#f5f5f0;display:inline-block;"></span>the path so far</div>
+        <div style="display:flex; flex-direction:column;">
+          <sc-for list="{{ experience }}" as="e" hint-placeholder-count="3">
+            <div ref="{{ reveal }}" style="display:grid; grid-template-columns:160px 1fr; gap:40px; padding:38px 0; border-top:1px solid rgba(245,245,240,.14); align-items:baseline;">
+              <span style="font-family:'Space Mono',monospace; font-size:13px; letter-spacing:.1em; color:rgba(245,245,240,.5);">{{ e.year }}</span>
+              <div>
+                <h3 style="font-size:clamp(30px,3.4vw,46px); margin:0 0 8px; font-weight:600;">{{ e.role }}</h3>
+                <div style="font-family:'Space Mono',monospace; font-size:13px; letter-spacing:.08em; color:rgba(245,245,240,.55); margin-bottom:14px;">{{ e.org }}</div>
+                <p style="font-size:clamp(20px,2vw,26px); line-height:1.5; margin:0; color:rgba(245,245,240,.75); max-width:640px;">{{ e.note }}</p>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- WRITING / BLOG -->
+      <section id="writing" style="padding:120px 40px; max-width:1280px; margin:0 auto;">
+        <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:56px; flex-wrap:wrap; gap:20px;">
+          <h2 style="font-size:clamp(48px,8vw,120px); line-height:.85; margin:0; font-weight:700; text-shadow:0 0 44px rgba(245,245,240,.28);">Writing</h2>
+          <span style="font-family:'Space Mono',monospace; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:rgba(245,245,240,.45);">notes &amp; ideas</span>
+        </div>
+        <div style="display:flex; flex-direction:column;">
+          <sc-for list="{{ posts }}" as="b" hint-placeholder-count="3">
+            <a ref="{{ reveal }}" href="Blog.dc.html" data-hover="1" style="text-decoration:none; color:inherit; display:grid; grid-template-columns:150px 1fr 110px; gap:36px; align-items:baseline; padding:34px 0; border-top:1px solid rgba(245,245,240,.14);" style-hover="opacity:.65;">
+              <span style="font-family:'Space Mono',monospace; font-size:12px; letter-spacing:.1em; color:rgba(245,245,240,.5);">{{ b.date }}</span>
+              <div>
+                <h3 style="font-size:clamp(28px,3.4vw,46px); line-height:1.1; margin:0 0 10px; font-weight:600;">{{ b.title }}</h3>
+                <p style="font-size:clamp(18px,2vw,24px); line-height:1.5; margin:0; color:rgba(245,245,240,.6); max-width:560px;">{{ b.blurb }}</p>
+              </div>
+              <span style="font-family:'Space Mono',monospace; font-size:12px; letter-spacing:.1em; color:rgba(245,245,240,.45); text-align:right;">{{ b.read }}</span>
+            </a>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" style="padding:140px 40px 100px; max-width:1280px; margin:0 auto;">
+        <div ref="{{ reveal }}" style="text-align:center;">
+          <div style="font-family:'Space Mono',monospace; font-size:13px; letter-spacing:.3em; text-transform:uppercase; color:rgba(245,245,240,.45); margin-bottom:30px;">got something in mind?</div>
+          <a href="mailto:hello@hassanahmed.dev" data-hover="1" style="display:inline-block; font-size:clamp(56px,12vw,180px); line-height:.9; font-weight:700; color:#f5f5f0; text-decoration:none; text-shadow:0 0 60px rgba(245,245,240,.4), 0 0 18px rgba(245,245,240,.22);">let's<br>talk →</a>
+          <div style="display:flex; justify-content:center; gap:36px; margin-top:64px; font-family:'Space Mono',monospace; font-size:13px; letter-spacing:.14em; text-transform:uppercase;">
+            <a href="#" data-hover="1" style="color:rgba(245,245,240,.6); text-decoration:none;">GitHub</a>
+            <a href="#" data-hover="1" style="color:rgba(245,245,240,.6); text-decoration:none;">LinkedIn</a>
+            <a href="#" data-hover="1" style="color:rgba(245,245,240,.6); text-decoration:none;">Twitter</a>
+            <a href="mailto:hello@hassanahmed.dev" data-hover="1" style="color:rgba(245,245,240,.6); text-decoration:none;">Email</a>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:120px; padding-top:26px; border-top:1px solid rgba(245,245,240,.14); font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:rgba(245,245,240,.4);">
+          <span>© 2026 Hassan Ahmed</span>
+          <span>built with too much coffee</span>
+        </div>
+      </section>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;100%&quot;},&quot;displayFont&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Caveat&quot;,&quot;Patrick Hand&quot;,&quot;Architects Daughter&quot;,&quot;Permanent Marker&quot;,&quot;Shadows Into Light Two&quot;,&quot;Space Grotesk&quot;],&quot;default&quot;:&quot;Patrick Hand&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;skipIntro&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;reduceMotion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { phase: this.props.skipIntro ? 'portfolio' : 'intro', dropping: false };
+
+  componentDidMount() {
+    this.cx = window.innerWidth / 2; this.cy = window.innerHeight / 2;
+    this.tx = this.cx; this.ty = this.cy; this.size = 14; this.tsize = 14;
+    this._move = (e) => { this.tx = e.clientX; this.ty = e.clientY; };
+    this._over = (e) => {
+      const t = e.target.closest && e.target.closest('[data-hover]');
+      this.tsize = t ? 46 : 14;
+    };
+    window.addEventListener('mousemove', this._move);
+    window.addEventListener('mouseover', this._over);
+    const loop = () => {
+      this.cx += (this.tx - this.cx) * 0.2;
+      this.cy += (this.ty - this.cy) * 0.2;
+      this.size += (this.tsize - this.size) * 0.2;
+      if (this.dot) {
+        this.dot.style.transform = `translate(${this.cx}px,${this.cy}px) translate(-50%,-50%)`;
+        this.dot.style.width = this.size + 'px';
+        this.dot.style.height = this.size + 'px';
+      }
+      this._raf = requestAnimationFrame(loop);
+    };
+    loop();
+    this.applyFont();
+  }
+
+  componentDidUpdate() { this.applyFont(); }
+
+  applyFont = () => {
+    const map = {
+      'Caveat': "'Caveat', cursive",
+      'Patrick Hand': "'Patrick Hand', cursive",
+      'Architects Daughter': "'Architects Daughter', cursive",
+      'Permanent Marker': "'Permanent Marker', cursive",
+      'Shadows Into Light Two': "'Shadows Into Light Two', cursive",
+      'Space Grotesk': "'Space Grotesk', sans-serif",
+    };
+    const fam = map[this.props.displayFont] || map['Patrick Hand'];
+    if (this.root) this.root.style.fontFamily = fam;
+  };
+
+  componentWillUnmount() {
+    window.removeEventListener('mousemove', this._move);
+    window.removeEventListener('mouseover', this._over);
+    cancelAnimationFrame(this._raf);
+    if (this.io) this.io.disconnect();
+  }
+
+  enter = () => {
+    if (this.state.dropping) return;
+    this.setState({ dropping: true });
+    setTimeout(() => { this.setState({ phase: 'portfolio' }); window.scrollTo(0, 0); }, 1050);
+    setTimeout(() => { if (this.overlay) this.overlay.style.opacity = '0'; }, 1150);
+    setTimeout(() => this.setState({ dropping: false }), 2000);
+  };
+
+  reveal = (el) => {
+    if (!el) return;
+    if (this.props.reduceMotion) return;
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(28px)';
+    el.style.transition = 'opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1)';
+    if (!this.io) {
+      this.io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) this.show(en.target);
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    }
+    this.io.observe(el);
+    // safety net: never let content stay invisible if reveal can't trigger
+    setTimeout(() => this.show(el), 4000);
+  };
+
+  show = (el) => {
+    if (!el) return;
+    el.style.opacity = '1';
+    el.style.transform = 'none';
+    if (this.io) this.io.unobserve(el);
+  };
+
+  renderVals() {
+    return {
+      posts: [
+        { date: 'May 2026', title: 'Making the web feel alive', blurb: 'Small interactions, big difference — how micro-animations change the way an interface feels.', read: '5 min' },
+        { date: 'Mar 2026', title: 'Three.js without the headache', blurb: 'A practical starting point for adding 3D to a site without tanking performance.', read: '8 min' },
+        { date: 'Jan 2026', title: 'Why I rebuild my portfolio every year', blurb: 'Notes on treating my own site as a playground for whatever I am learning.', read: '4 min' },
+      ],
+      projects: [
+        { no: '01', title: 'Nebula', tags: 'WebGL · React · Real-time' },
+        { no: '02', title: 'Driftboard', tags: 'Product · TypeScript · Design' },
+        { no: '03', title: 'Pulse', tags: 'Dashboard · Data viz · Node' },
+        { no: '04', title: 'Marginalia', tags: 'Editorial · Animation · GSAP' },
+      ],
+      experience: [
+        { year: '2024 — now', role: 'Frontend Engineer', org: 'Studio / Freelance', note: 'Shipping animated, interactive interfaces for startups and creative studios.' },
+        { year: '2022 — 24', role: 'Full-Stack Developer', org: 'A Tech Company', note: 'Owned features end to end across React front-ends and Node services.' },
+        { year: '2021', role: 'Where it started', org: 'Self-taught', note: 'Built my first site, broke it a hundred times, and got hooked.' },
+      ],
+      isIntro: this.state.phase === 'intro',
+      isPortfolio: this.state.phase === 'portfolio',
+      showOverlay: this.state.dropping,
+      enter: this.enter,
+      reveal: this.reveal,
+      setDot: (el) => { this.dot = el; },
+      setRoot: (el) => { this.root = el; },
+      setOverlay: (el) => { this.overlay = el; },
+    };
+  }
+}
+</script>
+</body>
+</html>

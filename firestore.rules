@@ -1,0 +1,27 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+    function isPublished() {
+      return resource.data.status == 'published';
+    }
+
+    // Public can read PUBLISHED projects/posts; the signed-in admin can read all
+    // (incl. drafts). Only the signed-in admin can write.
+    // NOTE: public list queries must filter where('status','==','published')
+    // or the rules engine denies them.
+    match /projects/{id} {
+      allow read: if isPublished() || signedIn();
+      allow create, update, delete: if signedIn();
+    }
+
+    match /posts/{id} {
+      allow read: if isPublished() || signedIn();
+      allow create, update, delete: if signedIn();
+    }
+  }
+}

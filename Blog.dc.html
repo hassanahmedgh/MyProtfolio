@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Making the web feel alive — Hassan Ahmed</title>
+<meta name="description" content="Hassan Ahmed on micro-interactions, motion design and the small details that make a website feel alive — a practical guide for frontend developers.">
+<meta name="author" content="Hassan Ahmed">
+<meta property="og:title" content="Making the web feel alive — Hassan Ahmed">
+<meta property="og:description" content="Micro-interactions, motion and the small details that make a website feel alive.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; cursor: none; }
+  html, body { margin: 0; padding: 0; background: #080808; scroll-behavior: smooth; }
+  ::selection { background: #f5f5f0; color: #080808; }
+  @media (max-width: 640px){ * { cursor: auto; } }
+  @keyframes fadeUp { from { opacity:0; transform: translateY(20px);} to { opacity:1; transform: none;} }
+</style>
+</helmet>
+<div style="background:radial-gradient(1100px 700px at 50% -8%, rgba(245,245,240,.12), transparent 60%), #080808; color:#f5f5f0; font-family:'Patrick Hand',cursive; min-height:100vh; position:relative; overflow-x:hidden;">
+
+  <div ref="{{ setDot }}" style="position:fixed; top:0; left:0; width:14px; height:14px; border-radius:50%; background:#f5f5f0; mix-blend-mode:difference; pointer-events:none; z-index:99999; will-change:transform;"></div>
+
+  <!-- TOP BAR -->
+  <nav style="position:fixed; top:0; left:0; right:0; z-index:8000; display:flex; justify-content:space-between; align-items:center; padding:22px 40px; mix-blend-mode:difference;">
+    <a href="Portfolio.dc.html" data-hover="1" style="display:flex; align-items:center; gap:8px; color:#f5f5f0; text-decoration:none;">
+      <span style="font-weight:700; font-size:30px; letter-spacing:-.01em;">ha</span>
+      <span style="width:8px; height:8px; border-radius:50%; background:#f5f5f0; display:inline-block;"></span>
+    </a>
+    <a href="Portfolio.dc.html" data-hover="1" style="font-family:'Space Mono',monospace; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#f5f5f0; text-decoration:none;">← back to work</a>
+  </nav>
+
+  <!-- ARTICLE -->
+  <article style="max-width:760px; margin:0 auto; padding:170px 32px 60px;">
+    <header style="margin-bottom:56px;">
+      <div style="font-family:'Space Mono',monospace; font-size:12px; letter-spacing:.26em; text-transform:uppercase; color:rgba(245,245,240,.5); margin-bottom:28px;">Journal · Frontend</div>
+      <h1 style="font-size:clamp(46px,8vw,88px); line-height:.98; margin:0; font-weight:700; text-shadow:0 0 50px rgba(245,245,240,.3);">Making the web feel alive</h1>
+      <p style="font-size:clamp(22px,3vw,30px); line-height:1.45; color:rgba(245,245,240,.7); margin:26px 0 0;">Small interactions, big difference — how motion and micro-detail change the way an interface feels in the hand.</p>
+      <div style="display:flex; gap:24px; flex-wrap:wrap; margin-top:34px; font-family:'Space Mono',monospace; font-size:12px; letter-spacing:.1em; color:rgba(245,245,240,.5);">
+        <span>By Hassan Ahmed</span>
+        <span>May 2026</span>
+        <span>5 min read</span>
+      </div>
+    </header>
+
+    <div style="aspect-ratio:16/9; border-radius:4px; border:1px solid rgba(245,245,240,.12); background-image:repeating-linear-gradient(45deg,rgba(245,245,240,.05) 0 12px,transparent 12px 24px); display:flex; align-items:flex-end; padding:16px; margin-bottom:56px;">
+      <span style="font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(245,245,240,.4);">cover image →</span>
+    </div>
+
+    <div style="font-size:clamp(21px,2.4vw,26px); line-height:1.7; color:rgba(245,245,240,.88);">
+      <p style="margin:0 0 30px;">There's a moment when a website stops feeling like a document and starts feeling like a place. A button that presses back. A page that hands off to the next one instead of slamming into it. None of these things are functional, strictly speaking — but they are the difference between an interface people tolerate and one they enjoy.</p>
+
+      <h2 style="font-size:clamp(30px,4vw,44px); line-height:1.1; margin:52px 0 20px; font-weight:700;">Motion is communication</h2>
+      <p style="margin:0 0 30px;">Animation isn't decoration. Every transition is telling the user something: where they came from, where they're going, what just changed. When an item slides out of a list, you understand it was removed. When a panel grows from the button you tapped, you understand where it came from. Done well, motion answers questions before the user thinks to ask them.</p>
+      <p style="margin:0 0 30px;">The trap is treating animation as a layer you sprinkle on at the end. The interfaces that feel best are the ones where motion was part of the plan — where the layout was designed to move.</p>
+
+      <blockquote style="margin:48px 0; padding:8px 0 8px 28px; border-left:2px solid rgba(245,245,240,.3); font-size:clamp(26px,3.4vw,38px); line-height:1.3; color:#f5f5f0;">Good motion is invisible. You don't notice it — you just feel that the thing is well made.</blockquote>
+
+      <h2 style="font-size:clamp(30px,4vw,44px); line-height:1.1; margin:52px 0 20px; font-weight:700;">Start with the smallest thing</h2>
+      <p style="margin:0 0 30px;">You don't need a physics engine to make something feel alive. Start with the cursor, the hover, the press. Give interactive elements a state for every thing a finger or mouse can do to them. A 120-millisecond ease on a hover is often the entire difference between "flat" and "crafted".</p>
+      <p style="margin:0 0 30px;">From there, work outward: section reveals as you scroll, a considered page transition, a loading state that has a personality instead of a spinner. Each one is small. Together they add up to a site that feels intentional.</p>
+
+      <h2 style="font-size:clamp(30px,4vw,44px); line-height:1.1; margin:52px 0 20px; font-weight:700;">Performance is part of the feel</h2>
+      <p style="margin:0 0 30px;">A beautiful animation that drops frames feels worse than no animation at all. Stick to transforms and opacity, keep work off the main thread, and respect <span style="font-family:'Space Mono',monospace; font-size:.8em;">prefers-reduced-motion</span> for the people who need it. Smoothness is a feature — and it's one users feel even when they can't name it.</p>
+      <p style="margin:0;">Build the thing that works first. Then spend the last ten percent making it feel alive. That ten percent is the part people remember.</p>
+    </div>
+
+    <!-- MORE POSTS -->
+    <div style="margin-top:90px; padding-top:40px; border-top:1px solid rgba(245,245,240,.14);">
+      <div style="font-family:'Space Mono',monospace; font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:rgba(245,245,240,.45); margin-bottom:28px;">More writing</div>
+      <sc-for list="{{ more }}" as="m" hint-placeholder-count="2">
+        <a href="Blog.dc.html" data-hover="1" style="display:flex; justify-content:space-between; align-items:baseline; gap:24px; padding:22px 0; border-top:1px solid rgba(245,245,240,.1); text-decoration:none; color:inherit;" style-hover="opacity:.65;">
+          <span style="font-size:clamp(22px,3vw,30px); font-weight:600;">{{ m.title }}</span>
+          <span style="font-family:'Space Mono',monospace; font-size:12px; color:rgba(245,245,240,.45); white-space:nowrap;">{{ m.date }}</span>
+        </a>
+      </sc-for>
+    </div>
+
+    <div style="margin-top:80px; text-align:center;">
+      <a href="Portfolio.dc.html" data-hover="1" style="font-family:'Space Mono',monospace; font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:rgba(245,245,240,.7); text-decoration:none;">← back to portfolio</a>
+    </div>
+  </article>
+
+  <footer style="display:flex; justify-content:space-between; align-items:center; max-width:760px; margin:60px auto 0; padding:26px 32px 50px; border-top:1px solid rgba(245,245,240,.14); font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:rgba(245,245,240,.4);">
+    <span>© 2026 Hassan Ahmed</span>
+    <span>built with too much coffee</span>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    this.cx = window.innerWidth / 2; this.cy = window.innerHeight / 2;
+    this.tx = this.cx; this.ty = this.cy; this.size = 14; this.tsize = 14;
+    this._move = (e) => { this.tx = e.clientX; this.ty = e.clientY; };
+    this._over = (e) => {
+      const t = e.target.closest && e.target.closest('[data-hover]');
+      this.tsize = t ? 46 : 14;
+    };
+    window.addEventListener('mousemove', this._move);
+    window.addEventListener('mouseover', this._over);
+    const loop = () => {
+      this.cx += (this.tx - this.cx) * 0.2;
+      this.cy += (this.ty - this.cy) * 0.2;
+      this.size += (this.tsize - this.size) * 0.2;
+      if (this.dot) {
+        this.dot.style.transform = `translate(${this.cx}px,${this.cy}px) translate(-50%,-50%)`;
+        this.dot.style.width = this.size + 'px';
+        this.dot.style.height = this.size + 'px';
+      }
+      this._raf = requestAnimationFrame(loop);
+    };
+    loop();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('mousemove', this._move);
+    window.removeEventListener('mouseover', this._over);
+    cancelAnimationFrame(this._raf);
+  }
+
+  renderVals() {
+    return {
+      more: [
+        { title: 'Three.js without the headache', date: 'Mar 2026' },
+        { title: 'Why I rebuild my portfolio every year', date: 'Jan 2026' },
+      ],
+      setDot: (el) => { this.dot = el; },
+    };
+  }
+}
+</script>
+</body>
+</html>
