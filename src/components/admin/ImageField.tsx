@@ -57,8 +57,9 @@ export default function ImageField({
       {mode === "url" ? (
         <input
           className="input"
-          type="url"
-          placeholder="https://…/image.jpg"
+          type="text"
+          inputMode="url"
+          placeholder="https://…/image.jpg or /projects/…"
           value={value ?? ""}
           onChange={(e) => onChange(e.target.value.trim() || null)}
           style={{ marginTop: 12 }}
