@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { listProjects, deleteProject } from "@/lib/admin/projects";
 import { listPosts, deletePost } from "@/lib/admin/posts";
-import { seedSampleProjects } from "@/lib/admin/seed";
+import { seedSampleProjects, seedSamplePosts } from "@/lib/admin/seed";
 import type { Project, Post } from "@/lib/types";
 
 export default function Dashboard() {
@@ -14,6 +14,7 @@ export default function Dashboard() {
   const [msg, setMsg] = useState("");
   const [err, setErr] = useState("");
   const [seeding, setSeeding] = useState(false);
+  const [seedingPosts, setSeedingPosts] = useState(false);
 
   const load = useCallback(async () => {
     setErr("");
@@ -47,6 +48,21 @@ export default function Dashboard() {
       setErr("Seeding failed. " + (e instanceof Error ? e.message : ""));
     } finally {
       setSeeding(false);
+    }
+  };
+
+  const onSeedPosts = async () => {
+    setSeedingPosts(true);
+    setMsg("");
+    setErr("");
+    try {
+      const { added, updated } = await seedSamplePosts();
+      setMsg(`Published ${added} new post(s); refreshed ${updated} existing.`);
+      await load();
+    } catch (e) {
+      setErr("Seeding posts failed. " + (e instanceof Error ? e.message : ""));
+    } finally {
+      setSeedingPosts(false);
     }
   };
 
@@ -125,6 +141,14 @@ export default function Dashboard() {
         <Link href="/admin/posts/new" className="btn btn--solid">
           + New post
         </Link>
+        <button
+          type="button"
+          className="btn"
+          onClick={onSeedPosts}
+          disabled={seedingPosts}
+        >
+          {seedingPosts ? "Publishing…" : "Seed sample posts"}
+        </button>
       </div>
 
       <div className="admin-list">

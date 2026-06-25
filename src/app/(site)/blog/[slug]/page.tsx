@@ -34,8 +34,13 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const metaTitle = post.seoTitle?.trim() || post.title;
   const metaDescription = post.metaDescription?.trim() || post.excerpt;
   const canonical = post.canonicalUrl?.trim() || `/blog/${post.slug}`;
-  // Use the post cover when set; otherwise inherit the generated OG image.
-  const images = post.coverImage ? [post.coverImage] : undefined;
+  // Use the post cover for social cards, but skip SVG (most social platforms
+  // don't render SVG) and let it inherit the generated PNG OG image instead.
+  const ogCover =
+    post.coverImage && !post.coverImage.toLowerCase().endsWith(".svg")
+      ? post.coverImage
+      : null;
+  const images = ogCover ? [ogCover] : undefined;
   return {
     title: metaTitle,
     description: metaDescription,
@@ -79,7 +84,10 @@ export default async function ArticlePage({ params }: Params) {
     dateModified: post.updatedAt ?? post.publishedAt ?? undefined,
     author: { "@type": "Person", name: cv.name, url: getSiteUrl() },
     publisher: { "@type": "Person", name: cv.name, url: getSiteUrl() },
-    image: post.coverImage ? [post.coverImage] : [absoluteUrl("/opengraph-image")],
+    image:
+      post.coverImage && !post.coverImage.toLowerCase().endsWith(".svg")
+        ? [post.coverImage]
+        : [absoluteUrl("/opengraph-image")],
     keywords: post.tags.join(", "),
     url: absoluteUrl(`/blog/${post.slug}`),
     mainEntityOfPage: {
