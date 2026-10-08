@@ -54,8 +54,10 @@ Do this once in the [Firebase console](https://console.firebase.google.com/).
 ## 3. First run as admin
 
 1. `npm run dev`, go to `/admin`, sign in with the account you created.
-2. Click **“Seed sample projects”** to load your 5 real CV projects into Firestore
-   (idempotent — safe to click again; it skips ones that already exist).
+2. Click **“Sync projects from CV”** to push the canonical project list from
+   [`src/content/cv.ts`](./src/content/cv.ts) into Firestore (idempotent — it
+   creates new slugs, refreshes existing ones, and **deletes** any project whose
+   slug is no longer in that array).
 3. Add/edit projects and write blog posts (Markdown, with live preview). Each item
    has a **Draft / Published** status — only *Published* items appear on the public
    site, in `/blog`, and in `sitemap.xml`.

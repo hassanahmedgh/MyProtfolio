@@ -41,8 +41,10 @@ export default function Dashboard() {
     setMsg("");
     setErr("");
     try {
-      const { added, updated } = await seedSampleProjects();
-      setMsg(`Seeded ${added} new project(s); refreshed ${updated} existing.`);
+      const { added, updated, removed } = await seedSampleProjects();
+      setMsg(
+        `Synced projects: ${added} added, ${updated} refreshed, ${removed} removed.`,
+      );
       await load();
     } catch (e) {
       setErr("Seeding failed. " + (e instanceof Error ? e.message : ""));
@@ -100,7 +102,7 @@ export default function Dashboard() {
           onClick={onSeed}
           disabled={seeding}
         >
-          {seeding ? "Seeding…" : "Seed sample projects"}
+          {seeding ? "Syncing…" : "Sync projects from CV"}
         </button>
       </div>
 

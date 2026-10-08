@@ -6,6 +6,7 @@ import {
   doc,
   updateDoc,
   getDocs,
+  deleteDoc,
   serverTimestamp,
   Timestamp,
 } from "firebase/firestore";
@@ -16,17 +17,19 @@ import { estimateReadingMinutes } from "@/lib/slug";
 import { revalidatePublic } from "./revalidate";
 
 /**
- * Seed/refresh the 5 real CV projects in Firestore. Runs client-side as the
- * authenticated admin (writes require sign-in per security rules).
+ * Sync Firestore `projects` to the canonical list in `seedProjects`. Runs
+ * client-side as the authenticated admin (writes require sign-in per rules).
  *
  * - New projects (by slug) are created.
  * - Existing projects (by slug) have their canonical fields refreshed
- *   (title/summary/url/tags/order) so re-running fixes stale data, while
- *   preserving anything you customized (coverImage, status, featured).
+ *   (title/summary/url/tags/order/coverImage) so re-running fixes stale data.
+ * - Projects whose slug is NOT in `seedProjects` are DELETED, so the array in
+ *   `src/content/cv.ts` is the single source of truth for the public site.
  */
 export async function seedSampleProjects(): Promise<{
   added: number;
   updated: number;
+  removed: number;
 }> {
   const snap = await getDocs(collection(db, "projects"));
   const existingBySlug = new Map<string, { id: string; coverImage: string | null }>();
@@ -66,8 +69,18 @@ export async function seedSampleProjects(): Promise<{
     }
   }
 
-  if (added > 0 || updated > 0) await revalidatePublic(["projects"]);
-  return { added, updated };
+  // Prune anything that is no longer part of the canonical set.
+  const keep = new Set(seedProjects.map((p) => p.slug));
+  let removed = 0;
+  for (const [slug, existing] of existingBySlug) {
+    if (keep.has(slug)) continue;
+    await deleteDoc(doc(db, "projects", existing.id));
+    removed++;
+  }
+
+  if (added > 0 || updated > 0 || removed > 0)
+    await revalidatePublic(["projects"]);
+  return { added, updated, removed };
 }
 
 /**

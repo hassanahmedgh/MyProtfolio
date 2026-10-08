@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <radialGradient id="bsGlow" cx="12%" cy="8%" r="85%">
+      <stop offset="0%" stop-color="#e0b057" stop-opacity="0.22"/>
+      <stop offset="55%" stop-color="#0a0806" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bsStone" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2a2622"/>
+      <stop offset="45%" stop-color="#15120f"/>
+      <stop offset="100%" stop-color="#3a3028"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#0a0806"/>
+  <rect width="1200" height="630" fill="url(#bsGlow)"/>
+
+  <!-- faceted stone -->
+  <g transform="translate(830 315)">
+    <g opacity="0.95">
+      <path d="M0 -150 L128 -72 L128 72 L0 150 L-128 72 L-128 -72 Z" fill="url(#bsStone)" stroke="#e0b057" stroke-opacity="0.35"/>
+      <path d="M0 -150 L0 150 M-128 -72 L128 72 M128 -72 L-128 72" stroke="#e0b057" stroke-opacity="0.16"/>
+      <path d="M0 -150 L64 -36 L0 20 L-64 -36 Z" fill="#e0b057" fill-opacity="0.10"/>
+    </g>
+  </g>
+
+  <!-- wordmark -->
+  <g transform="translate(96 232)">
+    <circle cx="6" cy="-56" r="6" fill="#e0b057"/>
+    <text x="28" y="-50" font-family="'Segoe UI', Arial, sans-serif" font-size="19" letter-spacing="4" fill="#e0b057" fill-opacity="0.85">UAE · USA · PAKISTAN</text>
+    <text x="0" y="46" font-family="Georgia, 'Times New Roman', serif" font-size="78" letter-spacing="3" fill="#f3ece0">BLACKSTONE</text>
+    <text x="4" y="92" font-family="'Segoe UI', Arial, sans-serif" font-size="26" letter-spacing="14" fill="#e0b057">SERVICES</text>
+    <text x="0" y="168" font-family="'Segoe UI', Arial, sans-serif" font-size="25" fill="#cfc6b8" fill-opacity="0.78">Marketing agency website · custom CMS</text>
+    <text x="0" y="204" font-family="'Segoe UI', Arial, sans-serif" font-size="25" fill="#cfc6b8" fill-opacity="0.78">Next.js · Firebase · Cloudinary</text>
+  </g>
+
+  <rect x="0" y="624" width="1200" height="6" fill="#e0b057" fill-opacity="0.5"/>
+</svg>

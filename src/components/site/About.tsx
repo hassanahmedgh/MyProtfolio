@@ -19,6 +19,8 @@ export default function About() {
           <p>{cv.about.currently}</p>
           <div className="h">toolbox</div>
           <p>{cv.about.toolbox}</p>
+          <div className="h">skills</div>
+          <p>{cv.about.skillsHeadline}</p>
           <div className="h">stack</div>
           <div className="skill-tags">
             {allSkills.map((s) => (
