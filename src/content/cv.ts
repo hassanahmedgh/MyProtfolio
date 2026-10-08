@@ -84,7 +84,7 @@ export const seedProjects: ProjectInput[] = [
       "Custom-built site and admin for a performance marketing agency: fully custom CMS (case studies, blog, services, industries, locations), role-based team accounts, media library with automatic image optimisation and deduplication, built-in SEO suite with schema, redirect and sitemap management plus automated audits, and lead capture with campaign attribution and email notifications. Built on Next.js with a self-hosted .NET 10 backend, keeping all client and lead data on owned infrastructure with no third-party processors.",
     url: "https://www.adscular.agency",
     tags: ["Next.js", ".NET 10", "SQL Server"],
-    coverImage: "/projects/assets/images/adscular.png",
+    coverImage: "/projects/assets/images/adscular.svg",
     order: 1,
     status: "published",
     featured: true,
