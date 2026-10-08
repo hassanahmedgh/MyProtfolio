@@ -42,7 +42,7 @@ export default function IntroGate({ children }: { children: ReactNode }) {
         <div className="intro" role="dialog" aria-label="Intro">
           <div className="intro-top">
             <span>Portfolio &apos;26</span>
-            <span>Frontend / Web</span>
+            <span>Full-Stack / Web</span>
           </div>
 
           <div className="intro-center">
@@ -53,7 +53,7 @@ export default function IntroGate({ children }: { children: ReactNode }) {
               know me
             </h1>
             <p className="intro-sub">
-              a frontend developer who builds fast, responsive, production-ready
+              a full-stack developer who builds fast, responsive, production-ready
               web apps. step inside.
             </p>
           </div>

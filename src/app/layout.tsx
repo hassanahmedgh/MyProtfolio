@@ -30,8 +30,10 @@ export const metadata: Metadata = {
   description: cv.summary,
   keywords: [
     "Hassan Ahmed",
-    "Frontend Developer",
+    "Full-Stack Developer",
     "Web Developer",
+    "Node.js",
+    ".NET",
     "React",
     "Next.js",
     "TypeScript",

@@ -8,7 +8,7 @@ export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Writing",
-  description: "Notes and ideas on frontend development, motion and the web, by Hassan Ahmed.",
+  description: "Notes and ideas on full-stack development, motion and the web, by Hassan Ahmed.",
   alternates: { canonical: "/blog" },
 };
 
