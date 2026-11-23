@@ -40,8 +40,8 @@
     <circle cx="6" cy="-56" r="6" fill="#29abe2"/>
     <text x="28" y="-50" font-family="'Segoe UI', Arial, sans-serif" font-size="19" letter-spacing="4" fill="#29abe2" fill-opacity="0.9">USA PERFORMANCE MARKETING</text>
     <text x="0" y="48" font-family="'Segoe UI', Arial, sans-serif" font-size="88" font-weight="700" letter-spacing="-1" fill="#f2f8ff">Adscular</text>
-    <text x="0" y="128" font-family="'Segoe UI', Arial, sans-serif" font-size="25" fill="#9fc4de" fill-opacity="0.85">Agency website · custom CMS · media library</text>
-    <text x="0" y="164" font-family="'Segoe UI', Arial, sans-serif" font-size="25" fill="#9fc4de" fill-opacity="0.85">Next.js · .NET 10 · SQL Server</text>
+    <text x="0" y="128" font-family="'Segoe UI', Arial, sans-serif" font-size="25" fill="#9fc4de" fill-opacity="0.85">Agency website · custom CMS · SEO/AEO schema</text>
+    <text x="0" y="164" font-family="'Segoe UI', Arial, sans-serif" font-size="25" fill="#9fc4de" fill-opacity="0.85">Next.js · React · TypeScript · Firebase</text>
   </g>
 
   <rect x="0" y="624" width="1200" height="6" fill="#29abe2" fill-opacity="0.55"/>

@@ -5,38 +5,39 @@ import type { ProjectInput } from "@/lib/types";
 
 export const cv = {
   name: "Hassan Ahmed",
-  title: "Full-Stack Web Developer",
+  title: "Frontend Web Developer",
   location: "Karachi, Pakistan",
   phone: "0339 2774190",
   email: "hassanahmed4546@icloud.com",
   github: "https://github.com/hassanahmedgh",
   githubLabel: "github.com/hassanahmedgh",
+  linkedin: "https://www.linkedin.com/in/hassan-ahmed-200769419/",
   instagram: "https://www.instagram.com/hassanahmed31427/",
 
   // Hero / meta
   tagline:
-    "I build fast, responsive, production-ready web applications, from the frontend all the way through to deployment.",
+    "I build fast, responsive, production-ready web applications, from the first design all the way through to deployment.",
   summary:
-    "Full-stack web developer working in React, Next.js and TypeScript, with 1 year of freelance front-end experience at Adscular building responsive, high-performance web interfaces, plus backend work in Node.js, .NET and Python.",
+    "Frontend web developer with 1 year of freelance experience building responsive, production-ready web applications using React, Next.js and TypeScript.",
 
   about: {
-    lead: "I'm a full-stack web developer working in React, Next.js, and TypeScript. For the past year I've been freelancing as a front-end developer for Adscular, building responsive, high-performance interfaces and integrating REST APIs. Alongside that, I build backend solutions with Node.js, .NET, and Python.",
-    body: "I'm currently studying Game Engineering at SSUET, combining technical expertise with creativity to build production-ready applications from frontend to deployment.",
+    lead: "I'm a frontend-focused web developer with 1 year of freelance experience building responsive, production-ready web applications using React, Next.js, and TypeScript. I'm skilled in component-based architecture, REST API integration, performance optimization, and SEO-friendly development.",
+    body: "I'm a Game Engineering student at SSUET who delivers client sites end to end, from design to deployment, with a growing portfolio of live projects.",
     currently:
-      "Freelancing as a front-end developer for Adscular, building production interfaces with Next.js and TypeScript.",
+      "Freelancing as a web developer for local businesses and individual clients, while learning Node.js, Express and testing with Jest.",
     toolbox:
-      "React · Next.js · TypeScript · Node.js · .NET · Python · REST APIs · Firebase · Tailwind CSS · Git · Vercel",
+      "React · Next.js · Angular · TypeScript · Tailwind CSS · REST APIs · Firebase · Git · Vite · Vercel",
     // Headline skill line (rendered above the stack tags in the About section).
     skillsHeadline:
-      "Full-Stack Web Development | TypeScript, Next.js, React, Node.js, REST",
+      "Frontend Web Development | TypeScript, Next.js, React, Angular, REST",
   },
 
   experience: [
     {
-      year: "2025 to Present",
-      role: "Freelance Front-End Developer",
-      org: "Adscular · Karachi, Pakistan",
-      note: "Build responsive, high-performance front-ends for client platforms: component architecture and UI in React/Next.js and TypeScript, styling with Tailwind CSS, and REST API integration. Take interfaces from design through to deployment.",
+      year: "2025 to Present · 1 yr",
+      role: "Freelance Web Developer",
+      org: "Self-employed · Karachi, Pakistan",
+      note: "Build and deliver responsive websites for local businesses and individual clients, handling design, development, and deployment. Work directly with clients to scope requirements and iterate on designs from feedback, translating their needs into clean, functional interfaces using modern frameworks.",
     },
     {
       year: "2025 to 2029",
@@ -47,13 +48,13 @@ export const cv = {
   ],
 
   skills: {
-    Frontend: ["React", "Next.js", "TypeScript", "JavaScript", "HTML5", "CSS3"],
+    Frontend: ["React", "Next.js", "Angular", "TypeScript", "JavaScript", "HTML5", "CSS3"],
     "Styling & UI": ["Tailwind CSS", "Responsive", "Component UI"],
-    "Backend & APIs": ["Node.js", ".NET (C#)", "Python", "REST APIs", "Firebase"],
+    "Backend & APIs": ["REST APIs", "Firebase", "Python (Flask)", "C#", "C++"],
     "Tools & Workflow": ["Git", "GitHub", "Vite", "Vercel", "npm", "VS Code", "Claude Code"],
   } as Record<string, string[]>,
 
-  learning: ["Express", "Testing (Jest)"],
+  learning: ["Node.js", "Express", "Testing (Jest)"],
   languages: [
     { name: "Urdu", level: "Native" },
     { name: "English", level: "Fluent" },
@@ -61,6 +62,11 @@ export const cv = {
 
   socials: [
     { label: "GitHub", href: "https://github.com/hassanahmedgh", icon: "github" },
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/hassan-ahmed-200769419/",
+      icon: "linkedin",
+    },
     {
       label: "Instagram",
       href: "https://www.instagram.com/hassanahmed31427/",
@@ -70,7 +76,7 @@ export const cv = {
   ] as { label: string; href: string; icon: SocialIconName }[],
 };
 
-export type SocialIconName = "github" | "instagram" | "email";
+export type SocialIconName = "github" | "linkedin" | "instagram" | "email";
 
 // The live project set. Used by the one-click "Seed sample projects" button in
 // the admin: projects are created/refreshed by slug, and any project in
@@ -78,16 +84,64 @@ export type SocialIconName = "github" | "instagram" | "email";
 // single source of truth for what appears on the site.
 export const seedProjects: ProjectInput[] = [
   {
-    title: "Adscular · Performance Marketing Agency Website",
+    title: "Adscular · Agency Website",
     slug: "adscular-agency-website",
     summary:
-      "Custom-built site and admin for a performance marketing agency: fully custom CMS (case studies, blog, services, industries, locations), role-based team accounts, media library with automatic image optimisation and deduplication, built-in SEO suite with schema, redirect and sitemap management plus automated audits, and lead capture with campaign attribution and email notifications. Built on Next.js with a self-hosted .NET 10 backend, keeping all client and lead data on owned infrastructure with no third-party processors.",
+      "Full-stack design and build of a 30+ page performance-marketing agency platform with a custom Firebase CMS, comprehensive SEO/AEO schema, and a live dashboard hero.",
     url: "https://www.adscular.agency",
-    tags: ["Next.js", ".NET 10", "SQL Server"],
+    tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Firebase"],
     coverImage: "/projects/assets/images/adscular.svg",
     order: 1,
     status: "published",
     featured: true,
+  },
+  {
+    title: "Elevo · Wellness E-Commerce Store",
+    slug: "elevo-wellness-store",
+    summary:
+      "Fully responsive e-commerce store for a wellness brand, built with React, Vite, and TypeScript on a Firebase/Firestore backend. Features a live product catalog synced from the database, an animated cart drawer, a custom admin dashboard with full CRUD for products, orders, and customers, plus Google Analytics and a motion-driven UI.",
+    url: "https://elevo-delta.vercel.app",
+    tags: ["React", "TypeScript", "Vite", "Firebase / Firestore"],
+    coverImage: "/projects/assets/images/elevo.jpeg",
+    order: 2,
+    status: "published",
+    featured: true,
+  },
+  {
+    title: "Student Portal Advanced",
+    slug: "student-portal-advanced",
+    summary:
+      "Web app with CGPA tracking and attendance management, built with a TypeScript front end, Flask backend, and an interactive animated UI.",
+    url: "https://student-portal-advanced.vercel.app",
+    tags: ["TypeScript", "Python (Flask)"],
+    coverImage: "/projects/assets/images/student-portal.jpeg",
+    order: 3,
+    status: "published",
+    featured: false,
+  },
+  {
+    title: "GYM · Workout Routine App",
+    slug: "gym-workout-routine-app",
+    summary:
+      "Responsive gym workout-routine app with a clean, mobile-friendly interface.",
+    url: "https://gym-routine-nine.vercel.app",
+    tags: ["React", "TypeScript"],
+    coverImage: "/projects/assets/images/gym.jpeg",
+    order: 4,
+    status: "published",
+    featured: false,
+  },
+  {
+    title: "MiniGames Hub",
+    slug: "minigames-hub",
+    summary:
+      "Interactive hub of browser-based mini games with reusable components and responsive design.",
+    url: "https://minigameshub.vercel.app",
+    tags: ["React", "TypeScript"],
+    coverImage: "/projects/assets/images/minigames.jpeg",
+    order: 5,
+    status: "published",
+    featured: false,
   },
   {
     title: "Blackstone Services · Marketing Agency Website",
@@ -97,9 +151,9 @@ export const seedProjects: ProjectInput[] = [
     url: "https://www.blackstoneservices.ae",
     tags: ["Next.js", "Firebase", "Cloudinary"],
     coverImage: "/projects/assets/images/blackstone.svg",
-    order: 2,
+    order: 6,
     status: "published",
-    featured: true,
+    featured: false,
   },
   {
     title: "Hassan Ahmed · Portfolio & Blog",
@@ -109,8 +163,8 @@ export const seedProjects: ProjectInput[] = [
     url: "https://www.hassanahmed.site",
     tags: ["Next.js 15", "TypeScript", "Firebase", "React 19"],
     coverImage: "/projects/assets/images/portfolio.svg",
-    order: 3,
+    order: 7,
     status: "published",
-    featured: true,
+    featured: false,
   },
 ];

@@ -36,7 +36,7 @@ export default function OgImage() {
           }}
         >
           <span>Portfolio &apos;26</span>
-          <span>Full-Stack / Web</span>
+          <span>Frontend / Web</span>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>

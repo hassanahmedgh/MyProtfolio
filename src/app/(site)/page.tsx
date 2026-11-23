@@ -31,7 +31,7 @@ export default async function HomePage() {
     jobTitle: cv.title,
     url: siteUrl,
     email: `mailto:${cv.email}`,
-    sameAs: [cv.github, cv.instagram],
+    sameAs: [cv.github, cv.linkedin, cv.instagram],
     address: {
       "@type": "PostalAddress",
       addressLocality: "Karachi",
