@@ -17,13 +17,13 @@ export const cv = {
   tagline:
     "I build fast, responsive, production-ready web applications, from the frontend all the way through to deployment.",
   summary:
-    "Full-stack web developer with 2 years of experience in React, Next.js and TypeScript. Building responsive, high-performance web applications at Adscular since 2024, with backend work in Node.js, .NET and Python.",
+    "Full-stack web developer working in React, Next.js and TypeScript, with 1 year of freelance front-end experience at Adscular building responsive, high-performance web interfaces, plus backend work in Node.js, .NET and Python.",
 
   about: {
-    lead: "I'm a full-stack web developer with 2 years of experience in React, Next.js, and TypeScript. I've been working for Adscular since 2024, building responsive, high-performance web applications, integrating REST APIs, and developing backend solutions with Node.js, .NET, and Python.",
+    lead: "I'm a full-stack web developer working in React, Next.js, and TypeScript. For the past year I've been freelancing as a front-end developer for Adscular, building responsive, high-performance interfaces and integrating REST APIs. Alongside that, I build backend solutions with Node.js, .NET, and Python.",
     body: "I'm currently studying Game Engineering at SSUET, combining technical expertise with creativity to build production-ready applications from frontend to deployment.",
     currently:
-      "Building production web apps at Adscular with Next.js and TypeScript, plus backend work in Node.js, .NET and Python.",
+      "Freelancing as a front-end developer for Adscular, building production interfaces with Next.js and TypeScript.",
     toolbox:
       "React · Next.js · TypeScript · Node.js · .NET · Python · REST APIs · Firebase · Tailwind CSS · Git · Vercel",
     // Headline skill line (rendered above the stack tags in the About section).
@@ -33,10 +33,10 @@ export const cv = {
 
   experience: [
     {
-      year: "2024 to Present",
-      role: "Full-Stack Web Developer",
+      year: "2025 to Present",
+      role: "Freelance Front-End Developer",
       org: "Adscular · Karachi, Pakistan",
-      note: "Build responsive, high-performance web applications end to end: component architecture and UI in React/Next.js and TypeScript, REST API integration, and backend solutions in Node.js, .NET and Python. Ship client platforms from design through deployment.",
+      note: "Build responsive, high-performance front-ends for client platforms: component architecture and UI in React/Next.js and TypeScript, styling with Tailwind CSS, and REST API integration. Take interfaces from design through to deployment.",
     },
     {
       year: "2025 to 2029",
